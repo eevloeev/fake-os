@@ -1,0 +1,23 @@
+.time {
+  margin-left: auto;
+  padding: 0 10px;
+  height: 30px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #444 #f3f3f3 #f3f3f3 #444;
+  display: flex;
+  align-items: center;
+}
+
+.date {
+  position: absolute;
+  bottom: calc(100% + 5px);
+  right: 5px;
+  padding: 5px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #f3f3f3 #444 #444 #f3f3f3;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}

@@ -1,0 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #027f82;
+  font-family: monospace;
+  user-select: none;
+}

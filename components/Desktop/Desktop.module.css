@@ -1,0 +1,11 @@
+.desktop {
+  height: 100vh;
+  width: 100%;
+  padding: 5px 5px 45px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  gap: 15px;
+}
