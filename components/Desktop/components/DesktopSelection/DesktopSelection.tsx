@@ -19,11 +19,13 @@ export default function DesktopSelection() {
     document.addEventListener("mousedown", onMouseDown)
     document.addEventListener("mouseup", onMouseUp)
     document.addEventListener("mousemove", onMouseMove)
+    document.addEventListener("contextmenu", onMouseUp)
 
     return () => {
       document.removeEventListener("mousedown", onMouseDown)
       document.removeEventListener("mouseup", onMouseUp)
       document.removeEventListener("mousemove", onMouseMove)
+      document.removeEventListener("contextmenu", onMouseUp)
     }
   }, [onMouseDown, onMouseMove, onMouseUp])
 
