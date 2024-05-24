@@ -1,0 +1,78 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #101010;
+  z-index: 9999;
+  animation-name: fadeOut;
+  animation-duration: 1s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+}
+
+.char {
+  font-size: 32px;
+  color: #fff;
+  opacity: 0;
+}
+
+.char {
+  animation-name: blink;
+  animation-duration: 2s;
+}
+
+.char:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.char:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.char:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+.char:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+.char:nth-child(5) {
+  animation-delay: 0.9s;
+}
+
+.char:nth-child(6) {
+  animation-delay: 1s;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    height: 100%;
+  }
+  99.99% {
+    opacity: 0;
+    height: 100%;
+  }
+  100% {
+    opacity: 0;
+    height: 0;
+  }
+}
