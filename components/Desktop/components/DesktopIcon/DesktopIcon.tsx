@@ -1,7 +1,7 @@
 "use client"
 
-import useDesktopSelectionState from "@/state/useDesktopSelectionState"
-import { checkIntersection, classes } from "@/utils/helpers"
+import useDesktopSelectionState from "@/components/Desktop/state/useDesktopSelectionState"
+import { classNames } from "@/utils/helpers"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { useShallow } from "zustand/react/shallow"
@@ -10,6 +10,15 @@ import styles from "./DesktopIcon.module.css"
 
 type Props = {
   desktopIcon: DesktopIconType
+}
+
+function checkIntersection(rect1: DOMRect, rect2: DOMRect) {
+  return (
+    rect1.top < rect2.bottom &&
+    rect1.bottom > rect2.top &&
+    rect1.left < rect2.right &&
+    rect1.right > rect2.left
+  )
 }
 
 export default function DesktopIcon(props: Props) {
@@ -54,7 +63,7 @@ export default function DesktopIcon(props: Props) {
       onClick={() => {
         setIsSelected(true)
       }}
-      className={classes([styles.icon, isSelected && styles.selected])}
+      className={classNames([styles.icon, isSelected && styles.selected])}
     >
       <Image
         src={desktopIcon.image}

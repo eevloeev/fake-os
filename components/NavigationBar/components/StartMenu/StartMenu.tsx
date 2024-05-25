@@ -11,7 +11,7 @@ import ShutdownIcon from "@/assets/icons/shutdown.png"
 import SuspendIcon from "@/assets/icons/suspend.png"
 import MenuIcon from "@/components/NavigationBar/components/StartMenu/components/MenuIcon/MenuIcon"
 import { MenuIcon as MenuIconType } from "@/components/NavigationBar/types"
-import { classes } from "@/utils/helpers"
+import { classNames } from "@/utils/helpers"
 import Image from "next/image"
 import { Fragment, useEffect, useState } from "react"
 import styles from "./StartMenu.module.css"
@@ -85,7 +85,7 @@ function StartMenu() {
 
   return (
     <div
-      className={classes([styles.start, isStartMenuOpen && styles.active])}
+      className={classNames([styles.start, isStartMenuOpen && styles.active])}
       onClick={toggleStartMenu}
     >
       <div

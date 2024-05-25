@@ -1,6 +1,6 @@
 "use client"
 
-import useDesktopSelectionState from "@/state/useDesktopSelectionState"
+import useDesktopSelectionState from "@/components/Desktop/state/useDesktopSelectionState"
 import { useEffect } from "react"
 
 export default function DesktopSelection() {
