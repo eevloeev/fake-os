@@ -1,3 +1,9 @@
+# FakeOS
+
+Click to watch demo on YouTube:
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8ZiicKw7nuw/0.jpg)](https://www.youtube.com/watch?v=8ZiicKw7nuw)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
