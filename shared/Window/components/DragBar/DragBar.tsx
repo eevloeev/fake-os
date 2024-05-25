@@ -1,4 +1,8 @@
 import useWindowPlacement from "@/shared/Window/hooks/useWindowPlacement"
+import {
+  disableIframePointerEvents,
+  enableIframePointerEvents,
+} from "@/utils/helpers"
 import { useCallback, useEffect } from "react"
 import styles from "./DragBar.module.css"
 
@@ -11,12 +15,13 @@ function DragBar(props: Props) {
 
   const handleMouseDown = useCallback(() => {
     windowPlacement.setIsDragging(true)
+    disableIframePointerEvents()
     document.body.style.cursor = "move"
   }, [windowPlacement])
 
   const handleMouseUp = useCallback(() => {
     windowPlacement.setIsDragging(false)
-    document.body.style.pointerEvents = ""
+    enableIframePointerEvents()
     document.body.style.cursor = ""
   }, [windowPlacement])
 
@@ -25,8 +30,6 @@ function DragBar(props: Props) {
       if (!windowPlacement.isDragging) {
         return
       }
-
-      document.body.style.pointerEvents = "none"
 
       const { movementX, movementY } = event
 

@@ -2,6 +2,10 @@ import useWindowPlacement, {
   MIN_HEIGHT,
   MIN_WIDTH,
 } from "@/shared/Window/hooks/useWindowPlacement"
+import {
+  disableIframePointerEvents,
+  enableIframePointerEvents,
+} from "@/utils/helpers"
 import { useCallback, useEffect, useState } from "react"
 import styles from "./ResizeCorner.module.css"
 
@@ -24,7 +28,7 @@ function ResizeCorner(props: Props) {
 
   const handleMouseDown = useCallback(() => {
     setIsResizing(true)
-    document.body.style.pointerEvents = "none"
+    disableIframePointerEvents()
     document.body.style.cursor =
       position === POSITION.TOP_LEFT || position === POSITION.BOTTOM_RIGHT
         ? "nwse-resize"
@@ -33,7 +37,7 @@ function ResizeCorner(props: Props) {
 
   const handleMouseUp = useCallback(() => {
     setIsResizing(false)
-    document.body.style.pointerEvents = ""
+    enableIframePointerEvents()
     document.body.style.cursor = ""
   }, [setIsResizing])
 

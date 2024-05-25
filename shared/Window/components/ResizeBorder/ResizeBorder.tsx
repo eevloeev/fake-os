@@ -2,6 +2,10 @@ import useWindowPlacement, {
   MIN_HEIGHT,
   MIN_WIDTH,
 } from "@/shared/Window/hooks/useWindowPlacement"
+import {
+  disableIframePointerEvents,
+  enableIframePointerEvents,
+} from "@/utils/helpers"
 import { CSSProperties, useCallback, useEffect, useState } from "react"
 import styles from "./ResizeBorder.module.css"
 
@@ -58,7 +62,7 @@ function ResizeBorder(props: Props) {
 
   const handleMouseDown = useCallback(() => {
     setIsResizing(true)
-    document.body.style.pointerEvents = "none"
+    disableIframePointerEvents()
     document.body.style.cursor =
       position === POSITION.TOP || position === POSITION.BOTTOM
         ? "ns-resize"
@@ -67,7 +71,7 @@ function ResizeBorder(props: Props) {
 
   const handleMouseUp = useCallback(() => {
     setIsResizing(false)
-    document.body.style.pointerEvents = ""
+    enableIframePointerEvents()
     document.body.style.cursor = ""
   }, [setIsResizing])
 
