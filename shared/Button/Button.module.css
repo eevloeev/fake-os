@@ -1,0 +1,12 @@
+.button {
+  padding: 2px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #f3f3f3 #444 #444 #f3f3f3;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:active {
+  border-color: #444 #f3f3f3 #f3f3f3 #444;
+}

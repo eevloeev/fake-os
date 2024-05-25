@@ -1,0 +1,57 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  background-color: #c9c9c9;
+  border: 2px solid;
+  border-color: #f3f3f3 #444 #444 #f3f3f3;
+}
+
+.titleBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 4px;
+  background: #020990;
+}
+
+.title {
+  color: #fff;
+}
+
+.titleButtons {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  z-index: 1;
+}
+
+.titleButtons button:nth-child(3) {
+  margin-left: 2px;
+}
+
+.windowContent {
+  flex-grow: 1;
+}
+
+.menu {
+  display: flex;
+  align-items: stretch;
+  height: 26px;
+  padding: 2px 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}

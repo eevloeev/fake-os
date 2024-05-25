@@ -38,8 +38,8 @@ const useDesktopSelectionState = create<SelectionState>((set, get) => ({
   onMouseDown: (event: MouseEvent) => {
     const { set, selectionListeners } = get()
     selectionListeners.forEach((listener) => listener())
-    const root = document.getElementById("desktop")
-    if (root && !root.contains(event.target as Node)) {
+    const root = document.getElementById("desktop") as HTMLElement
+    if (!root.isEqualNode(event.target as HTMLElement)) {
       return
     }
     set({

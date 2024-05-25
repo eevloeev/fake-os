@@ -6,6 +6,7 @@ import NetworkIcon from "@/assets/icons/48181-MC44MzIwMzAwMCAxNzEzNzk4MDk5.png"
 import InternetExplorerIcon from "@/assets/icons/internet-explorer.png"
 import DesktopIcon from "@/components/Desktop/components/DesktopIcon/DesktopIcon"
 import DesktopSelection from "@/components/Desktop/components/DesktopSelection/DesktopSelection"
+import InternetExplorer from "@/programs/InternetExplorer/InternetExplorer"
 import styles from "./Desktop.module.css"
 import type { DesktopIcon as DesktopIconType } from "./types"
 
@@ -47,6 +48,7 @@ export default function Desktop() {
         <DesktopIcon desktopIcon={icon} key={index} />
       ))}
       <DesktopSelection />
+      <InternetExplorer />
     </div>
   )
 }

@@ -2,8 +2,17 @@
   box-sizing: border-box;
 }
 
+html {
+  --navigation-bar__height: 40px;
+}
+
 body {
   background: #027f82;
-  font-family: "W95FA", monospace;
   user-select: none;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
 }
