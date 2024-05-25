@@ -11,20 +11,3 @@
   align-items: center;
   z-index: 999;
 }
-
-.start {
-  padding: 0 10px;
-  height: 30px;
-  background: #c0c0c0;
-  border: 2px solid;
-  border-color: #f3f3f3 #444 #444 #f3f3f3;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.start:active {
-  border-color: #444 #f3f3f3 #f3f3f3 #444;
-}
