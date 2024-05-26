@@ -9,14 +9,14 @@ import RunIcon from "@/assets/icons/run.png"
 import SettingsIcon from "@/assets/icons/settings.png"
 import ShutdownIcon from "@/assets/icons/shutdown.png"
 import SuspendIcon from "@/assets/icons/suspend.png"
-import MenuIcon from "@/components/NavigationBar/components/StartMenu/components/MenuIcon/MenuIcon"
-import { MenuIcon as MenuIconType } from "@/components/NavigationBar/types"
+import StartMenuItem from "@/components/NavigationBar/components/StartMenu/components/StartMenuItem/StartMenuItem"
+import { StartMenuItem as StartMenuItemType } from "@/components/NavigationBar/types"
 import { classNames } from "@/utils/helpers"
 import Image from "next/image"
 import { Fragment, useEffect, useState } from "react"
 import styles from "./StartMenu.module.css"
 
-const menuIcons: (MenuIconType | { divider: true })[] = [
+const StartMenuItems: (StartMenuItemType | { divider: true })[] = [
   {
     name: "Programs",
     image: ProgramsIcon,
@@ -96,12 +96,12 @@ function StartMenu() {
       >
         <div className={styles.logo}>FakeOS</div>
         <div className={styles.menu}>
-          {menuIcons.map((icon, index) => (
+          {StartMenuItems.map((item, index) => (
             <Fragment key={index}>
-              {"divider" in icon ? (
+              {"divider" in item ? (
                 <hr className={styles.divider} />
               ) : (
-                <MenuIcon icon={icon} />
+                <StartMenuItem item={item} />
               )}
             </Fragment>
           ))}

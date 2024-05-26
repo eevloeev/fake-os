@@ -71,6 +71,7 @@ export default function DesktopIcon(props: Props) {
         width={32}
         height={32}
         style={{ pointerEvents: "none" }}
+        priority
       />
       <div className={styles.name}>{desktopIcon.name}</div>
     </div>

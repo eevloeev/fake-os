@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image"
 
-export type MenuIcon = {
+export type StartMenuItem = {
   name: string
   image: StaticImageData
   onOpen: () => void
