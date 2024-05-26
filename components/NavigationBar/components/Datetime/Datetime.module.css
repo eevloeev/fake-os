@@ -1,10 +1,11 @@
 .time {
-  padding: 0 10px;
   height: 30px;
+  width: 60px;
   background: #c0c0c0;
   border: 2px solid;
   border-color: #444 #f3f3f3 #f3f3f3 #444;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
