@@ -39,6 +39,10 @@ function InternetExplorer() {
       const iframe = document.querySelector("iframe")
       let url = addressBarRef.current.value
 
+      if (!url) {
+        return
+      }
+
       if (!url.startsWith("http") && !url.startsWith("https")) {
         url = encodeURI(
           `https://oldgoogle.neocities.org/search-1998.html?q=${url}`
@@ -48,6 +52,8 @@ function InternetExplorer() {
       if (iframe) {
         iframe.src = url
       }
+      addressBarRef.current.value = ""
+      addressBarRef.current.blur()
     }
   }, [])
 
@@ -73,7 +79,6 @@ function InternetExplorer() {
               <InputText
                 innerRef={addressBarRef}
                 className={styles.addressBar}
-                defaultValue={DEFAULT_URL}
                 placeholder="Enter a URL or search term and press Enter"
                 onKeyDown={handleAddressBarKeyDown}
               />
