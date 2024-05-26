@@ -1,0 +1,15 @@
+.anchor {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 5px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #f3f3f3 #444 #444 #f3f3f3;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  max-width: 300px;
+}
