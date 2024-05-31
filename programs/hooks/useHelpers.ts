@@ -1,4 +1,4 @@
-import { Program } from "@/programs/types"
+import { Program, ProgramComponent } from "@/programs/types"
 import { StaticImageData } from "next/image"
 import { useEffect, useState } from "react"
 
@@ -18,7 +18,7 @@ export function useProgramIcon(program: Program) {
 }
 
 export function useProgramComponent(program: Program) {
-  const [component, setComponent] = useState<React.ComponentType>()
+  const [component, setComponent] = useState<ProgramComponent>()
 
   useEffect(() => {
     async function fetchComponent() {
