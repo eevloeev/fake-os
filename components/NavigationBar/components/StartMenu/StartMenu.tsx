@@ -85,7 +85,7 @@ function StartMenu() {
 
   return (
     <div
-      className={classNames([styles.start, isStartMenuOpen && styles.active])}
+      className={classNames(styles.start, isStartMenuOpen && styles.active)}
       onClick={toggleStartMenu}
     >
       <div

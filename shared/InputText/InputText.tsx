@@ -12,7 +12,7 @@ function InputText(props: Props & JSX.IntrinsicElements["input"]) {
     <input
       ref={props.innerRef}
       type={type ?? "text"}
-      className={classNames([className, styles.input])}
+      className={classNames(className, styles.input)}
       {...restProps}
     />
   )

@@ -9,7 +9,7 @@ function Button(props: Props & JSX.IntrinsicElements["button"]) {
   const { children, className, ...restProps } = props
 
   return (
-    <button className={classNames([className, styles.button])} {...restProps}>
+    <button className={classNames(className, styles.button)} {...restProps}>
       {children}
     </button>
   )

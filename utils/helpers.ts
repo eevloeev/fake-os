@@ -1,4 +1,4 @@
-export function classNames(classNames: any[]) {
+export function classNames(...classNames: any) {
   return classNames.filter(Boolean).join(" ")
 }
 

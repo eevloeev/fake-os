@@ -63,7 +63,8 @@ export default function DesktopIcon(props: Props) {
       onClick={() => {
         setIsSelected(true)
       }}
-      className={classNames([styles.icon, isSelected && styles.selected])}
+      onDoubleClick={desktopIcon.onOpen}
+      className={classNames(styles.icon, isSelected && styles.selected)}
     >
       <Image
         src={desktopIcon.image}

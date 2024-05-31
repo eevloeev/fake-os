@@ -1,8 +1,9 @@
-import InternetExplorerIcon from "@/assets/icons/internet-explorer.png"
+import { WindowType } from "@/components/Desktop/types"
 import InputText from "@/shared/InputText/InputText"
 import Window from "@/shared/Window/Window"
 import { ComponentProps, useCallback, useRef } from "react"
 import styles from "./InternetExplorer.module.css"
+import program from "./program"
 
 const DEFAULT_URL = "https://oldgoogle.neocities.org/1998/"
 
@@ -27,8 +28,15 @@ const menu: ComponentProps<typeof Window>["menu"] = [
   },
 ]
 
-function InternetExplorer() {
+type Props = {
+  window: WindowType
+}
+
+function InternetExplorer(props: Props) {
+  const { window } = props
+
   const addressBarRef = useRef<HTMLInputElement>(null)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const handleAddressBarKeyDown = useCallback((event: React.KeyboardEvent) => {
     if (!addressBarRef.current) {
@@ -36,7 +44,6 @@ function InternetExplorer() {
     }
 
     if (event.key === "Enter") {
-      const iframe = document.querySelector("iframe")
       let url = addressBarRef.current.value
 
       if (!url) {
@@ -49,8 +56,8 @@ function InternetExplorer() {
         )
       }
 
-      if (iframe) {
-        iframe.src = url
+      if (iframeRef.current) {
+        iframeRef.current.src = url
       }
       addressBarRef.current.value = ""
       addressBarRef.current.blur()
@@ -66,11 +73,7 @@ function InternetExplorer() {
   }, [])
 
   return (
-    <Window
-      titleIcon={InternetExplorerIcon}
-      title="Internet Explorer"
-      menu={menu}
-    >
+    <Window window={window} program={program} menu={menu}>
       <div className={styles.container}>
         <div className={styles.navigation}>
           <div className={styles.navigationContainer}>
@@ -85,11 +88,14 @@ function InternetExplorer() {
             </div>
           </div>
         </div>
-        <iframe
-          className={styles.iframe}
-          src={DEFAULT_URL}
-          onLoad={handleIframeLoad}
-        ></iframe>
+        <div className={styles.iframeContainer}>
+          <iframe
+            ref={iframeRef}
+            className={styles.iframe}
+            src={DEFAULT_URL}
+            onLoad={handleIframeLoad}
+          />
+        </div>
       </div>
     </Window>
   )

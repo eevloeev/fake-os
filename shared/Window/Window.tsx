@@ -1,6 +1,10 @@
 import CloseIcon from "@/assets/icons/close.png"
 import MaximizeIcon from "@/assets/icons/maximize.png"
 import MinimizeIcon from "@/assets/icons/minimize.png"
+import useWindowsState from "@/components/Desktop/state/useWindowsState"
+import { WindowType } from "@/components/Desktop/types"
+import { useProgramIcon } from "@/programs/hooks/useHelpers"
+import { Program } from "@/programs/types"
 import Button from "@/shared/Button/Button"
 import DragBar from "@/shared/Window/components/DragBar/DragBar"
 import ResizeBorder, {
@@ -10,7 +14,7 @@ import ResizeCorner, {
   POSITION as cornerPositions,
 } from "@/shared/Window/components/ResizeCorner/ResizeCorner"
 import useWindowPlacement from "@/shared/Window/hooks/useWindowPlacement"
-import Image, { StaticImageData } from "next/image"
+import Image from "next/image"
 import { useCallback } from "react"
 import styles from "./Window.module.css"
 
@@ -22,32 +26,27 @@ export type MenuItem = {
 
 type Props = {
   children: React.ReactNode
-  titleIcon?: StaticImageData
-  title?: string
-  onClose?: () => void
-  onMinimize?: () => void
-  onMaximize?: () => void
+  window: WindowType
+  program: Program
   menu?: MenuItem[]
 }
 
 function Window(props: Props) {
-  const { children, titleIcon, title, onClose, onMinimize, onMaximize, menu } =
-    props
+  const { children, program, window, menu } = props
 
   const placement = useWindowPlacement()
+  const { closeWindow, focusWindow } = useWindowsState()
+  const icon = useProgramIcon(program)
 
   const handleClose = useCallback(() => {
-    onClose?.()
-  }, [onClose])
+    closeWindow(window.windowId)
+  }, [closeWindow, window.windowId])
 
-  const handleMinimize = useCallback(() => {
-    onMinimize?.()
-  }, [onMinimize])
+  const handleMinimize = useCallback(() => {}, [])
 
   const handleMaximize = useCallback(() => {
-    onMaximize?.()
     placement.maximize()
-  }, [onMaximize, placement])
+  }, [placement])
 
   return (
     <div
@@ -58,15 +57,16 @@ function Window(props: Props) {
         width: placement.width,
         height: placement.height,
         transition: placement.transition,
+        zIndex: window.zIndex,
       }}
+      onFocus={() => focusWindow(window.windowId)}
+      onMouseDown={() => focusWindow(window.windowId)}
     >
       <div className={styles.container}>
         <div className={styles.titleBar}>
           <DragBar windowPlacement={placement} />
-          {titleIcon && (
-            <Image src={titleIcon.src} width={16} height={16} alt="" />
-          )}
-          <div className={styles.title}>{title}</div>
+          {icon && <Image src={icon.src} width={16} height={16} alt="" />}
+          <div className={styles.title}>{program.name}</div>
           <div className={styles.titleButtons}>
             <Button onClick={handleMinimize}>
               <Image

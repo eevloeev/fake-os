@@ -57,9 +57,13 @@
   padding: 2px 5px;
 }
 
-.iframe {
+.iframeContainer {
   flex-grow: 1;
+}
+
+.iframe {
   width: 100%;
+  height: 100%;
   border: 2px solid;
   border-color: #444 #f3f3f3 #f3f3f3 #444;
   background: #fff;
