@@ -1,0 +1,38 @@
+.container {
+  flex-grow: 1;
+  display: flex;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.tab {
+  position: relative;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 200px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 8px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #f3f3f3 #444 #444 #f3f3f3;
+  cursor: pointer;
+}
+
+.tab:active,
+.tab.active {
+  background: #e0e0e0;
+  border-color: #444 #f3f3f3 #f3f3f3 #444;
+}
+
+.name {
+  position: absolute;
+  left: 28px;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

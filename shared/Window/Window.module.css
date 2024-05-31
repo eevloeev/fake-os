@@ -16,10 +16,18 @@
   gap: 4px;
   height: 26px;
   padding: 0 4px;
+  background: #808082;
+}
+
+.container.focused .titleBar {
   background: #020990;
 }
 
 .title {
+  color: #d3cace;
+}
+
+.container.focused .title {
   color: #fff;
 }
 
@@ -30,8 +38,13 @@
   z-index: 1;
 }
 
-.titleButtons button:nth-child(3) {
+.titleButton:nth-child(3) {
   margin-left: 2px;
+}
+
+.titleButtonIcon {
+  display: block;
+  pointer-events: none;
 }
 
 .windowContent {
