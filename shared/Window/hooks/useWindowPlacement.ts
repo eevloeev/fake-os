@@ -1,6 +1,6 @@
 import { WindowType } from "@/components/Desktop/types"
-import { Placement } from "@/shared/Window/types"
-import { CSSProperties, useCallback, useEffect, useState } from "react"
+import { Placement, TargetElement } from "@/shared/Window/types"
+import { CSSProperties, useCallback, useEffect, useRef, useState } from "react"
 
 const DURATION = {
   NONE: 0,
@@ -29,6 +29,7 @@ const DEFAULT_TRANSFORM_ORIGIN: CSSProperties["transformOrigin"] = "top left"
 function useWindowPlacement(window: WindowType) {
   const [display, setDisplay] =
     useState<CSSProperties["display"]>(DEFAULT_DISPLAY)
+  const [opacity, setOpacity] = useState<CSSProperties["opacity"]>(1)
   const [top, setTop] = useState<Placement["top"]>(DEFAULT_TOP)
   const [left, setLeft] = useState<Placement["left"]>(DEFAULT_LEFT)
   const [width, setWidth] = useState<Placement["width"]>(DEFAULT_WIDTH)
@@ -53,11 +54,17 @@ function useWindowPlacement(window: WindowType) {
       height: DEFAULT_HEIGHT,
     })
 
+  const transitionTimeouts = useRef<{
+    [key in TargetElement]?: NodeJS.Timeout
+  }>({})
   const setTransitionTimeout = useCallback(
-    (transition: number) => {
+    (element: TargetElement, transition: number) => {
+      if (transitionTimeouts.current[element]) {
+        clearTimeout(transitionTimeouts.current[element])
+      }
       setTransition(TRANSITION[transition])
-      setTimeout(() => {
-        setTransition(TRANSITION[DURATION.NONE])
+      transitionTimeouts.current[element] = setTimeout(() => {
+        setTransition(DEFAULT_TRANSITION)
       }, transition)
     },
     [setTransition]
@@ -66,7 +73,7 @@ function useWindowPlacement(window: WindowType) {
   const maximize = useCallback(() => {
     const desktop = document.getElementById("desktop") as HTMLElement
 
-    setTransitionTimeout(DURATION.SHORT)
+    setTransitionTimeout(TargetElement.WINDOW, DURATION.SHORT)
 
     if (
       top === 0 &&
@@ -109,24 +116,27 @@ function useWindowPlacement(window: WindowType) {
 
     const tabRect = tab.getBoundingClientRect()
 
-    setTransitionTimeout(DURATION.LONG)
+    setDisplay(DEFAULT_DISPLAY)
+    setTransitionTimeout(TargetElement.WINDOW, DURATION.LONG)
 
     if (window.isMinimized) {
       setPlacementBeforeMinimize({ top, left, width, height })
       setTop(tabRect.top + tabRect.height / 2)
       setLeft(tabRect.left + tabRect.width / 2)
       setTransform("scale(0)")
+      setOpacity(0)
     } else {
       setTop(placementBeforeMinimize.top)
       setLeft(placementBeforeMinimize.left)
       setTransform("")
+      setOpacity(1)
     }
   }, [window.isMinimized])
 
   return {
     position: DEFAULT_POSITION,
     display,
-    setDisplay,
+    opacity,
     top,
     setTop,
     left,
@@ -137,9 +147,7 @@ function useWindowPlacement(window: WindowType) {
     setHeight,
     maximize,
     transition,
-    setTransition,
     transform,
-    setTransform,
     transformOrigin: DEFAULT_TRANSFORM_ORIGIN,
     isDragging,
     setIsDragging,

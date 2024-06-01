@@ -3,7 +3,7 @@ import MaximizeIcon from "@/assets/icons/maximize.png"
 import MinimizeIcon from "@/assets/icons/minimize.png"
 import useWindowsState from "@/components/Desktop/state/useWindowsState"
 import { WindowType } from "@/components/Desktop/types"
-import { useProgramIcon } from "@/programs/hooks/useHelpers"
+import useProgramIcon from "@/programs/hooks/useProgramIcon"
 import { Program } from "@/programs/types"
 import Button from "@/shared/Button/Button"
 import DragBar from "@/shared/Window/components/DragBar/DragBar"
@@ -66,6 +66,8 @@ function Window(props: Props) {
         transform: placement.transform,
         transformOrigin: placement.transformOrigin,
         zIndex: window.zIndex,
+        opacity: placement.opacity,
+        overflow: "hidden",
       }}
       onFocus={() => focusWindow(window.windowId)}
       onMouseDown={() => focusWindow(window.windowId)}

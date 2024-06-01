@@ -4,3 +4,7 @@ export type Placement = {
   width: number
   height: number
 }
+
+export enum TargetElement {
+  WINDOW = "window",
+}
