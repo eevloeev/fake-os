@@ -7,6 +7,7 @@ import InternetExplorerIcon from "@/assets/icons/internet-explorer.png"
 import DesktopIcon from "@/components/Desktop/components/DesktopIcon/DesktopIcon"
 import DesktopSelection from "@/components/Desktop/components/DesktopSelection/DesktopSelection"
 import useWindowsState from "@/components/Desktop/state/useWindowsState"
+import FileExplorer from "@/programs/list/FileExplorer/program"
 import InternetExplorer from "@/programs/list/InternetExplorer/program"
 import { useMemo } from "react"
 import styles from "./Desktop.module.css"
@@ -21,7 +22,7 @@ export default function Desktop() {
         name: "My Computer",
         image: MyComputerIcon,
         onOpen: () => {
-          console.log("Open My Computer")
+          runWindow(FileExplorer)
         },
       },
       {

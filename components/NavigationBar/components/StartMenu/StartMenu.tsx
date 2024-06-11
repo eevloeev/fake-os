@@ -1,8 +1,8 @@
 "use client"
 
 import StartIcon from "@/assets/icons/48148-MC40MjcxOTUwMCAxNzEzNzk4MTAw.png"
-import DocumentsIcon from "@/assets/icons/documents.png"
 import FindIcon from "@/assets/icons/find.png"
+import DocumentsIcon from "@/assets/icons/folder-full.png"
 import HelpIcon from "@/assets/icons/help.png"
 import ProgramsIcon from "@/assets/icons/programs.png"
 import RunIcon from "@/assets/icons/run.png"

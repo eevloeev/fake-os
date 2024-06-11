@@ -1,0 +1,25 @@
+.button {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.authAwaitingUser {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.authError {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  text-align: center;
+}
