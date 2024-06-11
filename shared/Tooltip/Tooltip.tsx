@@ -1,6 +1,6 @@
 "use client"
 
-import { CSSProperties, useState } from "react"
+import { CSSProperties, useCallback, useState } from "react"
 import { useDebouncedCallback } from "use-debounce"
 import styles from "./Tooltip.module.css"
 
@@ -79,13 +79,13 @@ function Tooltip(props: Props) {
     setIsShown(true)
   }, duration ?? 500)
 
-  const hide = () => {
+  const hide = useCallback(() => {
     show.cancel()
     setIsShown(false)
-  }
+  }, [show])
 
   return (
-    <span className={styles.anchor} onMouseOver={show} onMouseOut={hide}>
+    <div className={styles.anchor} onMouseOver={show} onMouseOut={hide}>
       <span
         className={styles.tooltip}
         style={{
@@ -100,7 +100,7 @@ function Tooltip(props: Props) {
         {text}
       </span>
       {children}
-    </span>
+    </div>
   )
 }
 
