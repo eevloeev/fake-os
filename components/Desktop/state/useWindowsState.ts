@@ -1,10 +1,11 @@
-import { WindowType } from "@/components/Desktop/types"
+import { WindowTab, WindowType } from "@/components/Desktop/types"
 import { Program } from "@/programs/types"
 import { create } from "zustand"
 
 type WindowsState = {
   runningWindows: WindowType[]
-  focusedWindow: WindowType | null
+  windowTabs: WindowTab[]
+  focusedWindow: WindowType["windowId"] | null
   runWindow: (program: Program) => Promise<WindowType["windowId"]>
   closeWindow: (windowId: string) => void
   focusWindow: (windowId: string) => void
@@ -14,8 +15,17 @@ type WindowsState = {
   toggleMinimizeWindow: (windowId: string) => void
 }
 
+const getWindowTabs = (runningWindows: WindowType[]): WindowTab[] =>
+  runningWindows.map((window) => ({
+    windowId: window.windowId,
+    programName: window.programName,
+    icon: window.icon,
+    isMinimized: window.isMinimized,
+  }))
+
 const useWindowsState = create<WindowsState>((set, get) => ({
   runningWindows: [],
+  windowTabs: [],
   focusedWindow: null,
   runWindow: async (program) => {
     const windowId = Math.random().toString(36).substring(7)
@@ -31,7 +41,8 @@ const useWindowsState = create<WindowsState>((set, get) => ({
     }
     set((state) => ({
       runningWindows: [...state.runningWindows, newWindow],
-      focusedWindow: newWindow,
+      windowTabs: [...state.windowTabs, ...getWindowTabs([newWindow])],
+      focusedWindow: newWindow.windowId,
     }))
     return windowId
   },
@@ -40,6 +51,7 @@ const useWindowsState = create<WindowsState>((set, get) => ({
       runningWindows: state.runningWindows.filter(
         (window) => window.windowId !== windowId
       ),
+      windowTabs: state.windowTabs.filter((tab) => tab.windowId !== windowId),
     }))
   },
   focusWindow: (windowId) => {
@@ -66,7 +78,7 @@ const useWindowsState = create<WindowsState>((set, get) => ({
           zIndex: window.windowId === windowId ? maxIndex + 1 : window.zIndex,
         }
       }),
-      focusedWindow: currentWindow,
+      focusedWindow: currentWindow.windowId,
     }))
   },
   resetFocus: () => {
@@ -78,6 +90,10 @@ const useWindowsState = create<WindowsState>((set, get) => ({
         ...window,
         isMinimized: window.windowId === windowId ? true : window.isMinimized,
       })),
+      windowTabs: state.windowTabs.map((tab) => ({
+        ...tab,
+        isMinimized: tab.windowId === windowId ? true : tab.isMinimized,
+      })),
     }))
   },
   unminimizeWindow: (windowId) => {
@@ -85,6 +101,10 @@ const useWindowsState = create<WindowsState>((set, get) => ({
       runningWindows: state.runningWindows.map((window) => ({
         ...window,
         isMinimized: window.windowId === windowId ? false : window.isMinimized,
+      })),
+      windowTabs: state.windowTabs.map((tab) => ({
+        ...tab,
+        isMinimized: tab.windowId === windowId ? false : tab.isMinimized,
       })),
     }))
   },
@@ -103,6 +123,11 @@ const useWindowsState = create<WindowsState>((set, get) => ({
           window.windowId === windowId
             ? !window.isMinimized
             : window.isMinimized,
+      })),
+      windowTabs: state.windowTabs.map((tab) => ({
+        ...tab,
+        isMinimized:
+          tab.windowId === windowId ? !tab.isMinimized : tab.isMinimized,
       })),
     }))
   },
