@@ -2,6 +2,7 @@
 
 import { StartMenuItem as StartMenuItemType } from "@/components/NavigationBar/types"
 import Image from "next/image"
+import { memo } from "react"
 import styles from "./StartMenuItem.module.css"
 
 type Props = {
@@ -19,4 +20,4 @@ function StartMenuItem(props: Props) {
   )
 }
 
-export default StartMenuItem
+export default memo(StartMenuItem)
