@@ -75,7 +75,7 @@ function Window(props: Props) {
       <div
         className={classNames(
           styles.container,
-          focusedWindow?.windowId === window.windowId && styles.focused
+          focusedWindow === window.windowId && styles.focused
         )}
       >
         <div className={styles.titleBar}>

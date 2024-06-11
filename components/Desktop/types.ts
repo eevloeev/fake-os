@@ -12,6 +12,11 @@ export type WindowType = {
   programName: Program["name"]
 }
 
+export type WindowTab = Pick<
+  WindowType,
+  "windowId" | "programName" | "icon" | "isMinimized"
+>
+
 export type DesktopIcon = {
   name: string
   image: StaticImageData
